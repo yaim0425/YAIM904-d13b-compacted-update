@@ -21,9 +21,3 @@
 ![Screenshot 10](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(10).png)
 
 ![Screenshot 11](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(11).png)
-
-![Screenshot 12](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(12).png)
-
-![Screenshot 13](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(13).png)
-
-![Screenshot 14](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(14).png)

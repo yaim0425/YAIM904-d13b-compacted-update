@@ -1,13 +1,13 @@
 {
-  "name": "YAIM0425-d13b-compacted-update",
+  "name": "YAIM904-d13b-compacted-update",
   "version": "0.0.1",
-  "title": "YAIM0425 d13b Compacted update",
+  "title": "YAIM904 d13b Compacted update",
   "author": "YAIM904",
   "factorio_version": "2.0",
   "description": "Creates a copy of some elements with the values increased by the indicated amount. [[I accept suggestions]]",
-  "homepage": "https://github.com/yaim0425/YAIM0425-d13b-compacted-update",
+  "homepage": "https://github.com/yaim0425/YAIM904-d13b-compacted-update",
   "dependencies": [
-    "YAIM0425-d00b-core",
-    "YAIM0425-d12b-compactors"
+    "YAIM904-d00b-core",
+    "YAIM904-d12b-compactors"
   ]
 }

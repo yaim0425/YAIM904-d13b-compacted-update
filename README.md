@@ -1,8 +1,8 @@
-# YAIM0425 d13b – Compacted Update 🔼
+# YAIM904 d13b – Compacted Update 🔼
 
 ## 📦 Description
 
-**YAIM0425 d13b – Compacted Update** creates **enhanced versions of selected items, entities, and recipes**, increasing their values by a configurable amount.
+**YAIM904 d13b – Compacted Update** creates **enhanced versions of selected items, entities, and recipes**, increasing their values by a configurable amount.
 
 This MOD is designed to **extend and rebalance compacted content**, allowing upgraded versions that are more powerful, faster, or more efficient than their originals.
 
@@ -46,13 +46,13 @@ No manual configuration or commands are required by the player.
 ## 🔗 Repository
 
 **MOD**
-[YAIM0425 d13b Compacted update](https://github.com/yaim0425/YAIM0425-d13b-compacted-update)
+[YAIM904 d13b Compacted update](https://github.com/yaim0425/YAIM904-d13b-compacted-update)
 
 **Required**
 
-[YAIM0425 d00b Core](https://github.com/yaim0425/YAIM0425-d00b-core)
+[YAIM904 d00b Core](https://github.com/yaim0425/YAIM904-d00b-core)
 
-[YAIM0425 d12b Compactors](https://github.com/yaim0425/YAIM0425-d12b-compactors)
+[YAIM904 d12b Compactors](https://github.com/yaim0425/YAIM904-d12b-compactors)
 
 ---
 
@@ -64,24 +64,24 @@ Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
 
 ## 🖼️ Screenshots
 
-![Screenshot 1](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(1).png)
+![Screenshot 1](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(1).png)
 
-![Screenshot 2](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(2).png)
+![Screenshot 2](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(2).png)
 
-![Screenshot 3](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(3).png)
+![Screenshot 3](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(3).png)
 
-![Screenshot 4](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(4).png)
+![Screenshot 4](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(4).png)
 
-![Screenshot 5](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(5).png)
+![Screenshot 5](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(5).png)
 
-![Screenshot 6](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(6).png)
+![Screenshot 6](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(6).png)
 
-![Screenshot 7](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(7).png)
+![Screenshot 7](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(7).png)
 
-![Screenshot 8](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(8).png)
+![Screenshot 8](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(8).png)
 
-![Screenshot 9](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(9).png)
+![Screenshot 9](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(9).png)
 
-![Screenshot 10](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(10).png)
+![Screenshot 10](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(10).png)
 
-![Screenshot 11](https://github.com/yaim0425/YAIM0425-d13b-compacted-update/raw/code/screenshot/(11).png)
+![Screenshot 11](https://github.com/yaim0425/YAIM904-d13b-compacted-update/raw/code/screenshot/(11).png)

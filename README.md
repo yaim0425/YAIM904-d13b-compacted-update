@@ -1,8 +1,10 @@
 # YAIM904 d13b – Compacted Update 🔼
 
+---
+
 ## 📦 Description
 
-**YAIM904 d13b – Compacted Update** creates **enhanced versions of selected items, entities, and recipes**, increasing their values by a configurable amount.
+**YAIM904 d13b – Compacted Update** creates **enhanced versions of selected items, entities and recipes**, increasing their values by a configurable amount.
 
 This MOD is designed to **extend and rebalance compacted content**, allowing upgraded versions that are more powerful, faster, or more efficient than their originals.
 
@@ -18,7 +20,7 @@ It works especially well in combination with **compacted or compressed systems**
   * Improved efficiency or output
 * Original items and entities remain unchanged
 * Each upgraded element:
-  * Has its own item, recipe, and technology (when applicable)
+  * Has its own item, recipe and technology (when applicable)
   * Is clearly identifiable as an improved version
 
 No manual configuration or commands are required by the player.
@@ -58,7 +60,7 @@ No manual configuration or commands are required by the player.
 
 ## ❤️ Support
 
-Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
+Suggestions, ideas and balance feedback are welcome on the GitHub repository.
 
 ---
 

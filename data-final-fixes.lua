@@ -66,10 +66,12 @@ function This_MOD.start()
         end
     end
 
-    --- Fijar las posiciones actual
+    --- Implementar otros MODs
     if GMOD.d01b then GMOD.d01b.start() end
     if GMOD.d03b then GMOD.d03b.start() end
     if GMOD.d04b then GMOD.d04b.start() end
+
+    --- Fijar las posiciones actual
     GMOD.d00b.change_orders()
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---

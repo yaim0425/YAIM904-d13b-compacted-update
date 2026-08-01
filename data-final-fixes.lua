@@ -692,6 +692,7 @@ function This_MOD.get_elements()
 
         --- Renombrar
         local Item = GMOD.items[recipe.ingredients[1].name]
+        if not Item then return end
         local Item_do = GMOD.items[recipe.results[1].name]
 
         --- Calcular la cantidad

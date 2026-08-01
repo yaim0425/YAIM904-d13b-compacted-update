@@ -555,7 +555,7 @@ function This_MOD.reference_values()
                 ["speed"] = function(value) return value > 0 end
             }
             for effect, _ in pairs(item.effect) do
-                if Validate[effect](item.effect[effect]) then
+                if Validate[effect] and Validate[effect](item.effect[effect]) then
                     item.effect[effect] = space.amount * item.effect[effect]
                     if item.effect[effect] > 327 then item.effect[effect] = 327 end
                     if item.effect[effect] < -327 then item.effect[effect] = -327 end
@@ -692,6 +692,7 @@ function This_MOD.get_elements()
 
         --- Renombrar
         local Item = GMOD.items[recipe.ingredients[1].name]
+        if not Item then return end
         local Item_do = GMOD.items[recipe.results[1].name]
 
         --- Calcular la cantidad

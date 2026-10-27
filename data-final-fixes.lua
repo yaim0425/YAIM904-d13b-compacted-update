@@ -174,7 +174,7 @@ function This_MOD.reference_values()
         end,
 
         ["artillery-wagon"] = function(space, entity)
-            entity.max_speed = space.amount * entity.max_speed
+            entity.max_speed = space.amount * (entity.max_speed or 1.5)
         end,
 
         ["beacon"] = function(space, entity)
@@ -196,7 +196,7 @@ function This_MOD.reference_values()
         end,
 
         ["cargo-wagon"] = function(space, entity)
-            entity.max_speed = space.amount * entity.max_speed
+            entity.max_speed = space.amount * (entity.max_speed or 1.5)
 
             if entity.inventory_size then
                 entity.inventory_size = space.amount * entity.inventory_size
@@ -273,7 +273,7 @@ function This_MOD.reference_values()
         end,
 
         ["fluid-wagon"] = function(space, entity)
-            entity.max_speed = space.amount * entity.max_speed
+            entity.max_speed = space.amount * (entity.max_speed or 1.5)
 
             if entity.capacity then
                 entity.capacity = space.amount * entity.capacity

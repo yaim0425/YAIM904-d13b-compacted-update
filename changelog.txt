@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2026-11-08
+  Info:
+    - Version to Factorio 2.0
+    - Update for elimination of global normalization
+    - Deletion of unnecessary files
+---------------------------------------------------------------------------------------------------
 Version: 0.0.3
 Date: 2026-10-26
   Info:

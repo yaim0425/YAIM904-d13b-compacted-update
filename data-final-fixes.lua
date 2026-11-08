@@ -44,7 +44,7 @@ function This_MOD.start()
     --- Modificar los elementos
     for _, spaces in pairs(This_MOD.to_be_processed) do
         for _, space in pairs(spaces) do
-            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
             --- Crear los elementos
             This_MOD.create_item(space)
@@ -54,15 +54,15 @@ function This_MOD.start()
             This_MOD.update_recipe(space)
             This_MOD.update_tech(space)
 
-            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         end
         for _, space in pairs(spaces) do
-            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
             --- Corregir resultado de combustion
             This_MOD.update___burnt_result(space)
 
-            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         end
     end
 
@@ -70,9 +70,6 @@ function This_MOD.start()
     if GMOD.d01b then GMOD.d01b.start() end
     if GMOD.d03b then GMOD.d03b.start() end
     if GMOD.d04b then GMOD.d04b.start() end
-
-    --- Fijar las posiciones actual
-    GMOD.d00b.change_orders()
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -174,7 +171,7 @@ function This_MOD.reference_values()
         end,
 
         ["artillery-wagon"] = function(space, entity)
-            entity.max_speed = space.amount * (entity.max_speed or 1.5)
+            entity.max_speed = space.amount * entity.max_speed
         end,
 
         ["beacon"] = function(space, entity)
@@ -196,7 +193,7 @@ function This_MOD.reference_values()
         end,
 
         ["cargo-wagon"] = function(space, entity)
-            entity.max_speed = space.amount * (entity.max_speed or 1.5)
+            entity.max_speed = space.amount * entity.max_speed
 
             if entity.inventory_size then
                 entity.inventory_size = space.amount * entity.inventory_size
@@ -273,7 +270,7 @@ function This_MOD.reference_values()
         end,
 
         ["fluid-wagon"] = function(space, entity)
-            entity.max_speed = space.amount * (entity.max_speed or 1.5)
+            entity.max_speed = space.amount * entity.max_speed
 
             if entity.capacity then
                 entity.capacity = space.amount * entity.capacity
@@ -428,7 +425,7 @@ function This_MOD.reference_values()
 
             --- Cinta subterranea a usar
             if not entity.related_underground_belt then return end
-            local Item = GMOD.items[entity.related_underground_belt]
+            local Item = GMOD.item[entity.related_underground_belt]
             entity.related_underground_belt =
                 GMOD.name .. (
                     GMOD.get_id_and_name(entity.name) or
@@ -691,9 +688,9 @@ function This_MOD.get_elements()
         if #recipe.results ~= 1 then return end
 
         --- Renombrar
-        local Item = GMOD.items[recipe.ingredients[1].name]
+        local Item = GMOD.item[recipe.ingredients[1].name]
         if not Item then return end
-        local Item_do = GMOD.items[recipe.results[1].name]
+        local Item_do = GMOD.item[recipe.results[1].name]
 
         --- Calcular la cantidad
         local Amount = d12b.setting.amount
@@ -716,7 +713,7 @@ function This_MOD.get_elements()
             This_MOD.id .. "-" ..
             That_MOD.name
 
-        if GMOD.items[Name] then return end
+        if GMOD.item[Name] then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -729,10 +726,8 @@ function This_MOD.get_elements()
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
         local Space = {}
-
         Space.name = Name
-
-        Space.item = Item
+        Space.item = GMOD.copy_with_format(Item)
         Space.amount = Amount
         Space.item_do = Item_do
 
@@ -745,9 +740,6 @@ function This_MOD.get_elements()
 
         Space.tech = GMOD.get_technology({ Space.recipe_undo }, true)
 
-        Space.localised_name = Item.localised_name
-        Space.localised_description = Item.localised_description
-
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
@@ -759,7 +751,8 @@ function This_MOD.get_elements()
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
         if Item.place_result then
-            Space.entity = GMOD.entities[Item.place_result]
+            Space.entity = GMOD.entity[Item.place_result]
+            Space.entity = GMOD.copy_with_format(Space.entity)
             if not Space.entity then return end
             if This_MOD.ignore_to_name[Space.entity.name] then return end
             if not Space.entity.minable then return end
@@ -778,13 +771,18 @@ function This_MOD.get_elements()
 
         if Item.place_as_tile then
             Space.tiles = GMOD.tiles[Item.name]
+            Space.tiles = GMOD.copy(Space.tiles)
+            for key, _ in pairs(Space.tiles or {}) do
+                Space.tiles[key] = GMOD.copy_with_format(Space.tiles[key]) or {}
+                if not Space.tiles[key].minable then Space.tiles[key] = nil end
+                if not Space.tiles[key].minable.results then Space.tiles[key] = nil end
+            end
+            if GMOD.get_length(Space.tiles) == 0 then Space.tiles = nil end
             if not Space.tiles then return end
-            if not Space.tiles.minable then return end
-            if not Space.tiles.minable.results then return end
         end
 
         if Item.place_as_equipment_result then
-            for _, equipment in pairs(GMOD.equipments) do
+            for _, equipment in pairs(GMOD.equipment) do
                 repeat
                     if Item.place_as_equipment_result ~= equipment.name then break end
                     if not This_MOD.effect_to_type[equipment.type] then break end
@@ -795,7 +793,7 @@ function This_MOD.get_elements()
                         end
                     end
 
-                    Space.equipment = equipment
+                    Space.equipment = GMOD.copy_with_format(equipment)
                 until true
                 if Space.equipment then break end
             end
@@ -827,7 +825,7 @@ function This_MOD.get_elements()
 
             local Find = Space.entity.type:gsub("%-", "%%-")
             local Belt = Space.item.name:gsub(Find, "transport-belt")
-            Belt = GMOD.items[Belt]
+            Belt = GMOD.item[Belt]
             if not Belt then break end
 
             Space.belt = d12b.setting.amount
@@ -907,8 +905,8 @@ function This_MOD.create_item(space)
     Item.name = space.name
 
     --- Apodo y descripción
-    Item.localised_name = GMOD.copy(space.localised_name)
-    Item.localised_description = GMOD.copy(space.localised_description)
+    Item.localised_name = GMOD.copy(space.item.localised_name)
+    Item.localised_description = GMOD.copy(space.item.localised_description)
 
     --- Agregar indicador del MOD
     Item.icons = GMOD.copy(space.item_do.icons)
@@ -961,7 +959,7 @@ function This_MOD.create_item(space)
     ---- Eliminar el objeto anterior
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    GMOD.items[space.item_do.name] = nil
+    GMOD.item[space.item_do.name] = nil
     data.raw.item[space.item_do.name] = nil
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -1017,11 +1015,11 @@ function This_MOD.create_tile(space)
         Tile.name = space.name .. "-" .. i
 
         --- Apodo y descripción
-        Tile.localised_name = GMOD.copy(space.localised_name)
-        Tile.localised_description = GMOD.copy(space.localised_description)
+        Tile.localised_name = GMOD.copy(space.item.localised_name)
+        Tile.localised_description = GMOD.copy(space.item.localised_description)
 
         --- Agregar indicador del MOD
-        Tile.icons = GMOD.copy(GMOD.items[space.name].icons)
+        Tile.icons = GMOD.copy(GMOD.item[space.name].icons)
 
         --- Objeto a minar
         Tile.minable.results = { {
@@ -1108,8 +1106,8 @@ function This_MOD.create_equipment(space)
     Equipment.name = space.name
 
     --- Apodo y descripción
-    Equipment.localised_name = GMOD.copy(space.localised_name)
-    Equipment.localised_description = GMOD.copy(space.localised_description)
+    Equipment.localised_name = GMOD.copy(space.item.localised_name)
+    Equipment.localised_description = GMOD.copy(space.item.localised_description)
 
     --- Agregar indicador del MOD
     Equipment.icons = GMOD.copy(space.item_do.icons)
@@ -1182,17 +1180,17 @@ function This_MOD.create_entity(space)
     Entity.name = space.name
 
     --- Apodo y descripción
-    Entity.localised_name = GMOD.copy(space.localised_name)
-    Entity.localised_description = GMOD.copy(space.localised_description)
+    Entity.localised_name = GMOD.copy(space.item.localised_name)
+    Entity.localised_description = GMOD.copy(space.item.localised_description)
 
     --- Elimnar propiedades inecesarias
     Entity.factoriopedia_simulation = nil
 
     --- Cambiar icono
-    Entity.icons = GMOD.items[space.name].icons
+    Entity.icons = GMOD.item[space.name].icons
 
     --- Actualizar el nuevo subgrupo
-    Entity.subgroup = GMOD.items[space.name].subgroup
+    Entity.subgroup = GMOD.item[space.name].subgroup
 
     --- Objeto a minar
     Entity.minable.results = { {
@@ -1207,7 +1205,7 @@ function This_MOD.create_entity(space)
         if not entity then return end
 
         --- Cargar el objeto de referencia
-        local Item = GMOD.items[entity]
+        local Item = GMOD.item[entity]
         if not Item then return end
 
         --- Nombre despues del aplicar el MOD
@@ -1225,7 +1223,7 @@ function This_MOD.create_entity(space)
             ).name
 
         --- La entidad ya existe
-        if GMOD.entities[Name] then return Name end
+        if GMOD.entity[Name] then return Name end
 
         --- La entidad existirá
         for _, Spaces in pairs(This_MOD.to_be_processed) do
@@ -1330,7 +1328,7 @@ function This_MOD.update___burnt_result(space)
     --- Cambiar algunas propiedades
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    local Item = GMOD.items[space.name]
+    local Item = GMOD.item[space.name]
     for _, recipe in pairs(GMOD.recipes[Item.burnt_result]) do
         if GMOD.has_id(recipe.name, d12b.category_undo) then
             Item.burnt_result = recipe.ingredients[1].name

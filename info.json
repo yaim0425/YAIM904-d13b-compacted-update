@@ -1,9 +1,9 @@
 {
     "name": "YAIM904-d13b-compacted-update",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "YAIM904 d13b Compacted update",
     "author": "YAIM904",
-    "factorio_version": "2.0",
+    "factorio_version": "2.1",
     "description": "Creates a copy of some elements with the values increased by the indicated amount. [[I accept suggestions]]",
     "homepage": "https://github.com/yaim0425/YAIM904-d13b-compacted-update",
     "dependencies":  [
